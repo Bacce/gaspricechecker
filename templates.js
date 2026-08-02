@@ -16,6 +16,8 @@ function renderPricesPage(prices) {
       <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="theme-color" content="#000000">
+        <link rel="manifest" href="/public/manifest.json">
         <title>Gas Prices</title>
         <style>
           body {
@@ -68,6 +70,15 @@ function renderPricesPage(prices) {
         <div class="container">
           ${cards}
         </div>
+        <script>
+          if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+              navigator.serviceWorker.register('/public/sw.js')
+                .then(reg => console.log('SW registered!', reg))
+                .catch(err => console.log('SW registration failed:', err));
+            });
+          }
+        </script>
       </body>
     </html>
   `;

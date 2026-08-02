@@ -3,6 +3,7 @@ const { getPrices } = require("./scraper");
 const { renderPricesPage } = require("./templates");
 
 const app = express();
+app.use(express.static("public"));
 const PORT = process.env.PORT || 3000;
 
 let cachedPrices = null;
